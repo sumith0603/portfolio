@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumith S - Java Full Stack Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+        }
+
+        /*  background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0505 25%, #2a1505 50%, #1a0a00 75%, #0a0a0a 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 25s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ff6b00 0%, transparent 70%);
+            top: -10%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #ff0000 0%, transparent 70%);
+            bottom: -10%;
+            left: -5%;
+            animation-delay: 8s;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #ffaa00 0%, transparent 70%);
+            top: 30%;
+            left: 50%;
+            animation-delay: 15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(60px, -60px) scale(1.1); }
+            50% { transform: translate(-40px, 40px) scale(0.9); }
+            75% { transform: translate(40px, 60px) scale(1.05); }
+        }
+
+        /*  Header */
+        header {
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 107, 0, 0.2);
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #020000, #110801, #110c01, #0c0601, #180202);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ff6b00;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #ff6b00;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        .tech-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(transparent, #ff6b00, transparent);
+            animation: moveLine 5s linear infinite;
+            opacity: 0.3;
+        }
+
+        .line:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .line:nth-child(2) { left: 30%; animation-delay: 1s; }
+        .line:nth-child(3) { left: 50%; animation-delay: 2s; background: linear-gradient(transparent, #ffaa00, transparent); }
+        .line:nth-child(4) { left: 70%; animation-delay: 1.5s; }
+        .line:nth-child(5) { left: 90%; animation-delay: 0.5s; }
+
+        @keyframes moveLine {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #ffffff 0%, #ff6b00 50%, #ffaa00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: #ffaa00;
+            margin-bottom: 12px;
+        }
+
+        .resume-btn {
+            display: inline-block;
+            padding: 6px 18px;
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            color: #000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+            cursor: pointer;
+            border: none;
+            margin-bottom: 12px;
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 25px rgba(255, 107, 0, 0.6);
+        }
+
+        .header-contact {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-contact-item {
+            color: #ff6b00;
+            text-decoration: none;
+            font-size: 0.75em;
+            transition: all 0.3s ease;
+            padding: 4px 10px;
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 15px;
+            background: rgba(255, 107, 0, 0.05);
+        }
+
+        .header-contact-item:hover {
+            color: #ffaa00;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        /* Main Content  */
+        .main-content {
+            height: calc(100vh - 175px);
+            overflow: hidden;
+            padding: 15px 20px 5px;
+        }
+
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff6b00, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Projects  */
+        .projects-section {
+            flex: 0;
+    margin-bottom: 5px;
+    padding-bottom: 0;}
+
+        .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    height: auto;      
+    margin-bottom: 0; 
+}
+
+        
+
+        .project-card {
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 107, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
+            border-color: #ff6b00;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 10px;
+            flex: 1;
+        }
+
+        .project-title {
+            font-size: 1em;
+            color: #ff6b00;
+            margin-bottom: 5px;
+        }
+
+        .project-name {
+            font-size: 0.85em;
+            color: #ffaa00;
+            font-style: italic;
+            display: inline;
+        }
+
+        .project-description {
+            color: #b0b0b0;
+            line-height: 1.3;
+            font-size: 0.75em;
+            margin-top: 5px;
+        }
+
+        .projects-section {
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
+
+
+        /* Skills */
+        .skills-section {
+            flex: 0 0 auto;   margin-top: 5px;
+        }
+
+       
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .skill-category {
+            background: rgba(255, 107, 0, 0.03);
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 107, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 107, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .category-title {
+            font-size: 0.95em;
+            color: #ff6b00;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #ff6b00;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background: rgba(255, 170, 0, 0.1);
+            color: #ffaa00;
+            border: 1px solid rgba(255, 170, 0, 0.3);
+            border-radius: 10px;
+            font-size: 0.7em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background: rgba(255, 107, 0, 0.2);
+            border-color: #ff6b00;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.3);
+        }
+
+        .skill-tag.learning {
+            color: #ff6b00;
+            border-color: rgba(255, 107, 0, 0.4);
+            background: rgba(255, 107, 0, 0.1);
+        }
+
+        .learning-badge {
+            font-size: 0.8em;
+            background: rgba(255, 107, 0, 0.3);
+            padding: 1px 5px;
+            border-radius: 8px;
+            margin-left: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .projects-grid,
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .projects-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                height: calc(100vh - 160px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg">
+        <div class="gradient-orb orb1"></div>
+        <div class="gradient-orb orb2"></div>
+        <div class="gradient-orb orb3"></div>
+    </div>
+
+    <header>
+        <div class="header-bg"></div>
+        <div class="particles" id="particles"></div>
+        <div class="tech-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <div class="header-content">
+            <h1>SUMITH S</h1>
+            <p class="subtitle">Java Full Stack Developer</p>
+            <a class="resume-btn" href="SUMITH.S Resume.pdf" download="Sumith_S_Resume.pdf">View Resume</a>
+            
+            <div class="header-contact">
+                <a href="tel:+917349063742" class="header-contact-item">📞 +91-7349063742</a>
+                <a href="mailto:ssumith0603@gmail.com" class="header-contact-item">✉️ ssumith0603@gmail.com</a>
+                <a href="https://www.linkedin.com/in/sumiths0603" target="_blank" class="header-contact-item">💼 LinkedIn</a>
+                <a href="https://github.com/sumith0603" target="_blank" class="header-contact-item">💻 GitHub</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="content-wrapper">
+            <!-- Projects Section -->
+            <section class="projects-section">
+                <h2 class="section-title">My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card" onclick="window.open('https://sumith0603.github.io/Grocify/', '_blank')">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80" 
+                             alt="Grocify" 
+                             class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Online Delivery Portal - <span class="project-name">"Grocify"</span></h3>
+                            <p class="project-description">
+                                Full-stack grocery delivery app with cart management and order tracking.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.open('https://sumith0603.github.io/QuizApp/', '_blank')">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" 
+                             alt="Quiz App" 
+                             class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Interactive Quiz App</h3>
+                            <p class="project-description">
+                                Quiz application with countdown timer and dynamic score tracker.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.open('https://sumith0603.github.io/Impact-sensing-safety-jacket/', '_blank')">
+                        <img src="https://nassguard.com/wp-content/uploads/2023/10/DSC00752-copy-Custom.jpg" 
+                             alt="Safety Jacket" 
+                             class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Smart Safety Jacket</h3>
+                            <p class="project-description">
+                                Wearable safety system with real-time fall detection and location tracking.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="skills-section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3 class="category-title">Programming</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="category-title">Frameworks</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag learning">Spring Boot <span class="learning-badge">Learning</span></span>
+                            <span class="skill-tag learning">JDBC <span class="learning-badge">Learning</span></span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="category-title">Concepts</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">OOP</span>
+                            <span class="skill-tag">Rest API</span>
+                            <span class="skill-tag">Collections</span>
+                            <span class="skill-tag">Multithreading</span>
+                            <span class="skill-tag">Database Design</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: rgba(10, 10, 10, 0.9); padding: 20px 20px; text-align: center; border-top: 2px solid rgba(255, 107, 0, 0.2);">
+        <p style="color: #ffaa00; font-size: 0.75em; margin: 0;"> Sumith S</p>
+    </footer>
+
+    <script>
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                
+                const colors = ['#ff6b00', '#ff0000', '#ffaa00'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 8px ${color}`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
